@@ -4,5 +4,4 @@
     $password = '1234';
     $dbname = 'mygamelist';
     $link = new mysqli($host, $user, $password, $dbname);
-    echo $link->connect_error;
 ?>
