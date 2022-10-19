@@ -1,7 +1,8 @@
 <?php
-    $host="localhost";
-    $user="root";
-    $password="1234";
-    $dbname="test";
-    $link = mysqli_connect($host, $user, $password, $dbname);
+    $host = 'localhost';
+    $user = 'root';
+    $password = '1234';
+    $dbname = 'mygamelist';
+    $link = new mysqli($host, $user, $password, $dbname);
+    echo $link->connect_error;
 ?>
