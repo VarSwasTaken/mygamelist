@@ -48,6 +48,7 @@
     </p>
 
     <?php include "navbar.php"?>
+    <?php include "content.php"?>
     <?php include "popup-login.php"?>
   </body>
 </html>
