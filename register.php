@@ -61,5 +61,7 @@
 
         unset($_COOKIE['loginProgress']);
         setcookie('loginProgress', null, -1, '/');
+
+        setcookie('logged', true);
     }
 ?>

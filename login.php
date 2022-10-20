@@ -4,6 +4,7 @@
     function login(&$username) {
         if(!validate(['username', 'password'])) throw new Exception('Empty values');
 
+
         $username = htmlspecialchars(strip_tags(trim($_POST['username'])));
         $password = htmlspecialchars(strip_tags(trim($_POST['password'])));
         if(!$username || !$password) throw new Exception('Bad input');
@@ -15,10 +16,10 @@
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $res = $stmt->get_result();
-
         if($res->num_rows < 1 ) throw new Exception('Incorrect username or password');
         
         $row = $res->fetch_assoc();
+
         if(!password_verify($password, $row['password'])) throw new Exception('Incorrect username or password');
 
         session_start();
@@ -27,5 +28,7 @@
 
         unset($_COOKIE['loginProgress']);
         setcookie('loginProgress', null, -1, '/');
+
+        setcookie('logged', true);
     }
 ?>

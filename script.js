@@ -11,7 +11,7 @@ const searchInput = navBar.querySelector('input[type="search"]');
 const content = document.querySelector('main > .content');
 const searchInfo = document.querySelector('main').querySelector('h1');
 
-const addGameBoxes = (gameList) => {
+const addGameBoxes = async (gameList) => {
   for (i in gameList) {
     let box = document.createElement('div');
     box.classList.add('container', 'element');
@@ -46,16 +46,46 @@ const addGameBoxes = (gameList) => {
     let metacritic = document.createElement('p');
     if (gameList[i].metacritic != null) metacritic.innerText = `Metacritic score: ${gameList[i].metacritic}`;
     else metacritic.innerText = `Metacritic score: -`;
-    let plusIcon = document.createElement('img');
-    plusIcon.src = 'plusSign.svg';
-    plusIcon.alt = 'plus icon';
-    plusIcon.classList.add('plusSign');
+
+    let AddedGamesList = await fetch('getGames.php');
+    AddedGamesList = await AddedGamesList.json();
+
+    let gameAddAction = document.createElement('img');
+
+    if (AddedGamesList.includes(gameList[i].id)) {
+      gameAddAction.src = 'checkSign.svg';
+      gameAddAction.alt = 'plus icon';
+      gameAddAction.classList.add('checkSign');
+    } else {
+      gameAddAction.src = 'plusSign.svg';
+      gameAddAction.alt = 'plus icon';
+      gameAddAction.classList.add('plusSign');
+    }
+
+    gameAddAction.gameId = gameList[i].id;
+    if (getCookie('logged')) gameAddAction.addEventListener('click', addGame);
+    else gameAddAction.addEventListener('click', showSignIn);
+
     text.appendChild(metacritic);
     box.appendChild(image);
     box.appendChild(text);
-    box.appendChild(plusIcon);
+
+    box.appendChild(gameAddAction);
     content.appendChild(box);
   }
+};
+
+const addGame = ({ currentTarget }) => {
+  fetch('/addGame.php', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(currentTarget.gameId),
+  })
+    .then((res) => res.json())
+    .then((res) => console.log(res));
 };
 
 const showBestGames = async (APIkey) => {
@@ -158,6 +188,8 @@ closeLoginPopup.addEventListener('click', () => {
   navBar.style.filter = '';
   navBarButtons[0].disabled = false;
   navBarButtons[1].disabled = false;
+
+  document.cookie = 'loginProgress=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 });
 
 window.addEventListener('load', async () => {
