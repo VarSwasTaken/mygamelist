@@ -1,6 +1,6 @@
 const loginPopup = document.querySelector('.popup-login'); // login popup window
-const toggleLogin = document.querySelector('header button:first-of-type'); // button to show login popup window
-const toggleSignup = document.querySelector('header button:last-of-type'); // button to show sign up popup window
+const toggleLogin = document.querySelector('.loginButton'); // button to show login popup window
+const toggleSignup = document.querySelector('.signUpButton'); // button to show sign up popup window
 const loginButton = loginPopup.querySelector('button'); // button to submit login/sign up form
 const closeLoginPopup = loginPopup.querySelector('.closeLoginPopup'); // cross icon to hide login popup window
 const navBar = document.querySelector('.navigation');
@@ -10,6 +10,7 @@ const searchForm = navBar.querySelector('form');
 const searchInput = navBar.querySelector('input[type="search"]');
 const content = document.querySelector('main > .content');
 const searchInfo = document.querySelector('main').querySelector('h1');
+const main = document.querySelector('main')
 
 const addGameBoxes = (gameList) => {
   for (i in gameList) {
@@ -110,9 +111,12 @@ const showSignUp = () => {
   loginButton.innerText = 'Sign up';
   loginPopup.style.display = 'flex';
   navBar.style.filter = 'blur(8px)';
+  main.style.filter = 'blur(8px)';
+  navBar.style.pointerEvents = 'none';
+  main.style.pointerEvents = 'none';
+  navBar.style.userSelect = 'none';
+  main.style.userSelect = 'none';
   signInOrUpInput.value = 'sign up';
-  navBarButtons[0].disabled = true;
-  navBarButtons[1].disabled = true;
 };
 
 const showSignIn = () => {
@@ -120,9 +124,12 @@ const showSignIn = () => {
   loginButton.innerText = 'Sign in';
   loginPopup.style.display = 'flex';
   navBar.style.filter = 'blur(8px)';
+  main.style.filter = 'blur(8px)';
+  navBar.style.pointerEvents = 'none';
+  main.style.pointerEvents = 'none';
+  navBar.style.userSelect = 'none';
+  main.style.userSelect = 'none';  
   signInOrUpInput.value = 'sign in';
-  navBarButtons[0].disabled = true;
-  navBarButtons[1].disabled = true;
 };
 
 const getCookie = (cname) => {
@@ -149,15 +156,18 @@ if (loginProgress) {
   if (loginProgress === 'sign up') showSignUp();
 }
 
-toggleLogin.addEventListener('click', showSignIn);
+toggleLogin?.addEventListener('click', showSignIn);
 
-toggleSignup.addEventListener('click', showSignUp);
+toggleSignup?.addEventListener('click', showSignUp);
 
-closeLoginPopup.addEventListener('click', () => {
+closeLoginPopup?.addEventListener('click', () => {
   loginPopup.style.display = 'none';
   navBar.style.filter = '';
-  navBarButtons[0].disabled = false;
-  navBarButtons[1].disabled = false;
+  main.style.filter = '';
+  navBar.style.pointerEvents = 'auto';
+  main.style.pointerEvents = 'auto';
+  navBar.style.userSelect = 'auto';
+  main.style.userSelect = 'auto';  
 });
 
 window.addEventListener('load', async () => {

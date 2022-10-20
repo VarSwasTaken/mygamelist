@@ -40,10 +40,21 @@ input[type="search"]::-webkit-search-results-decoration {
     display: none; 
 }
 
-.listSign {
-    padding: 0 0.6rem;
-    cursor: pointer;
+.col-md-3.text-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
+
+.navigation span.username {
+    color: $secondary;
+    padding: 0 0.5rem 0 0.2rem;
+}
+
+// .listSign {
+//     padding-right: 0.2rem;
+//     cursor: pointer;
+// }
 
 main {
     color: $secondary;
@@ -97,6 +108,7 @@ main .element p {
 }
 
 .popup-login {
+    background-color: $background;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -109,15 +121,8 @@ main .element p {
     justify-content: center;
     text-align: center;
     padding: 2.5rem;
-}
-
-.popup-login::before {
-    content: '';
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-color: $background;
-    z-index: -100;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 
 .formInput {
@@ -142,6 +147,7 @@ main .element p {
 .formInput > input[type="password"] {
     border-bottom-left-radius: 0.375rem;
     border-bottom-right-radius: 0.375rem;
+    margin-bottom: 1.5rem;
 }
 
 .popup-login .site-title {

@@ -19,7 +19,7 @@
 
             <input type="text" name="action-type" hidden >
             
-            <?= $message ?>
+            <?php echo '<span class="errorMessage">'.$message.'</span>' ?>
         </div>
         <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
     </form>
