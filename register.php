@@ -45,23 +45,21 @@
         $res = $stmt->execute();
 
         if(!$res) throw new Exception($res->error);
-    }
+        $stmt->close();
 
-    $message = '';
-    $username = '';
-    try{
-        if($_SERVER['REQUEST_METHOD'] === "POST") register($username);
-        $message = 'user added';
-    }
-    catch(Exception $e) {
-        $message = $e->getMessage();
-    }
+        $sql = 'SELECT id FROM users WHERE username = ?';
 
+        $stmt = $link->prepare($sql);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $row = $res->fetch_assoc();
+        
+        session_start();
+        $_SESSION['username'] = $username;
+        $_SESSION['id'] = $row['id'];
+
+        unset($_COOKIE['loginProgress']);
+        setcookie('loginProgress', null, -1, '/');
+    }
 ?>
-
-<form action="index.php" method="POST">
-    <input type="text" name="username" id="" value="<?= $username ?>">
-    <input type="password" name="password" id="">
-    <button type="submit">zarejestruj sie</button>
-    <?php echo $message?>
-</form>

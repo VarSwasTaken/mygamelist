@@ -8,15 +8,23 @@
     <div>
         <span class="site-title text-white"><span class="red-letter">M</span>y<span class="red-letter">G</span>ame<span class="red-letter">L</span>ist</span>
     </div>
-    <div class="userInfo">
-        <div class="formInput">
-            <input type="text" id="username" placeholder="Username">
+    <form method="POST" action="index.php">
+        <div class="userInfo" >
+            <div class="formInput">
+                <input type="text" id="username" name="username" placeholder="Username" value = "<?= $username ?>">
+            </div>
+            <div class="formInput">
+                <input type="password" id="password" name="password" placeholder="Password">
+            </div>
+
+            <input type="text" name="action-type" hidden >
+            
+            <?= $message ?>
         </div>
-        <div class="formInput">
-            <input type="password" id="password" placeholder="Password">
-        </div>
-    </div>
-    <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+    </form>
+    
+
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x closeLoginPopup" viewBox="0 0 16 16">
         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
     </svg>
