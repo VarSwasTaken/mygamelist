@@ -37,16 +37,6 @@
     <title>My Game List</title>
   </head>
   <body class="bg-dark">
-    <p style="color: red">
-    <?php
-        if(isset($_SESSION['username'])){
-            echo "Zalogowany";
-            echo '<a href="logout.php">wyloguj</a>';
-        }
-        else echo "Nie zalogowany";
-    ?>
-    </p>
-
     <?php include "navbar.php"?>
     <?php include "content.php"?>
     <?php include "popup-login.php"?>
