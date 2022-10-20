@@ -10,7 +10,8 @@ const searchForm = navBar.querySelector('form');
 const searchInput = navBar.querySelector('input[type="search"]');
 const content = document.querySelector('main > .content');
 const searchInfo = document.querySelector('main').querySelector('h1');
-const main = document.querySelector('main')
+const main = document.querySelector('main');
+const loadingSpinner = document.querySelector('.lds-dual-ring');
 
 const addGameBoxes = async (gameList) => {
   for (i in gameList) {
@@ -86,7 +87,12 @@ const addGame = ({ currentTarget }) => {
     body: JSON.stringify(currentTarget.gameId),
   })
     .then((res) => res.json())
-    .then((res) => console.log(res));
+    .then((res) => {
+        currentTarget.src = 'checkSign.svg';
+        currentTarget.alt = 'check sign';
+        currentTarget.classList.remove("plusSign");
+        currentTarget.classList.add("checkSign");
+    });
 };
 
 const showBestGames = async (APIkey) => {
@@ -98,11 +104,11 @@ const showBestGames = async (APIkey) => {
       'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com',
     },
   };
-
   let response = await fetch(
     `https://rawg-video-games-database.p.rapidapi.com/games?key=${APIkey}&ordering=-metacritic`,
     options
   );
+  loadingSpinner.style.display = 'none';
   response = await response.json();
   response.results.forEach((element) => {
     gamesFound.push(element);
@@ -193,18 +199,11 @@ toggleSignup?.addEventListener('click', showSignUp);
 closeLoginPopup?.addEventListener('click', () => {
   loginPopup.style.display = 'none';
   navBar.style.filter = '';
-<<<<<<< HEAD
-  navBarButtons[0].disabled = false;
-  navBarButtons[1].disabled = false;
-
-  document.cookie = 'loginProgress=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-=======
   main.style.filter = '';
   navBar.style.pointerEvents = 'auto';
   main.style.pointerEvents = 'auto';
   navBar.style.userSelect = 'auto';
   main.style.userSelect = 'auto';  
->>>>>>> 6a9dc189504e217984b59aef8f6b3807bfc7f6e4
 });
 
 window.addEventListener('load', async () => {

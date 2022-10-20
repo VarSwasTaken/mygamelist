@@ -36,7 +36,7 @@
 
     function add_user($username, $password) {
         require 'config.php';
-        $sql = 'INSERT INTO users(username, password) VALUES(?, ?)';
+        $sql = 'INSERT INTO users(username, password, admin) VALUES(?, ?, 0)';
 
         $password = password_hash($password, PASSWORD_ARGON2ID);
 
@@ -47,7 +47,7 @@
         if(!$res) throw new Exception($res->error);
         $stmt->close();
 
-        $sql = 'SELECT id FROM users WHERE username = ?';
+        $sql = 'SELECT id, admin FROM users WHERE username = ?';
 
         $stmt = $link->prepare($sql);
         $stmt->bind_param('s', $username);
@@ -58,6 +58,7 @@
         session_start();
         $_SESSION['username'] = $username;
         $_SESSION['id'] = $row['id'];
+        $_SESSION['admin'] = $row['admin'];
 
         unset($_COOKIE['loginProgress']);
         setcookie('loginProgress', null, -1, '/');

@@ -10,7 +10,7 @@
         if(!$username || !$password) throw new Exception('Bad input');
 
         require 'config.php';
-        $sql = 'SELECT id, password FROM users WHERE username = ?';
+        $sql = 'SELECT id, password, admin FROM users WHERE username = ?';
 
         $stmt = $link->prepare($sql);
         $stmt->bind_param('s', $username);
@@ -25,6 +25,7 @@
         session_start();
         $_SESSION['username'] = $username;
         $_SESSION['id'] = $row['id'];
+        $_SESSION['admin'] = $row['admin'];
 
         unset($_COOKIE['loginProgress']);
         setcookie('loginProgress', null, -1, '/');
