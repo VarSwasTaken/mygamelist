@@ -37,6 +37,62 @@ input[type=search]::-webkit-search-results-decoration {
   display: none;
 }
 
+.listSign {
+  padding: 0 0.6rem;
+  cursor: pointer;
+}
+
+main {
+  color: #f3f3f3;
+}
+
+main > h1, main > .h1 {
+  text-align: center;
+  padding-bottom: 1.75rem;
+}
+
+main .element {
+  height: 200px;
+  border-bottom: 1px solid white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+main .element > img.cover {
+  flex-basis: 30%;
+  height: 90%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+main .element > img.plusSign {
+  height: 50px;
+  color: #f71722;
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+main .element > img.plusSign:hover {
+  transform: translateY(-10px);
+}
+
+main .element > div {
+  flex-basis: 65%;
+}
+
+main .element h1, main .element .h1 {
+  font-size: 1.5rem;
+}
+
+main .element p {
+  font-size: 1rem;
+  padding: 0.1rem 0;
+  margin: 0;
+}
+
 .popup-login {
   position: absolute;
   top: 50%;
