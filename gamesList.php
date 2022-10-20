@@ -1,3 +1,8 @@
+<?php
+  session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="pl">
   <head>
@@ -12,10 +17,13 @@
     <link href="./style.css" rel="stylesheet" />
     <title>My Game List</title>
     <script defer src="script.js"></script>
+    <script defer src="gamesList.js"></script>
   </head>
   <body class="bg-dark">
     <?php include "navbar.php"?>
-    <?php include "content.php"?>
+    <main>
+      <div class="content"></div>
+    </main>
     <?php include "popup-login.php"?>
   </body>
 </html>

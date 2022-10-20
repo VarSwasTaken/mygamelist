@@ -33,7 +33,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="./style.css" rel="stylesheet" />
     <script defer src="script.js"></script>
-    <script defer src="addGame.js"></script>
+    <script defer src="index.js"></script>
     <title>My Game List</title>
   </head>
   <body class="bg-dark">

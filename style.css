@@ -1,5 +1,6 @@
 @charset "UTF-8";
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -83,6 +84,11 @@ main .element > img.plusSign {
 
 main .element > img.plusSign:hover {
   transform: translateY(-10px);
+}
+
+main .element > img.checkSign {
+  height: 50px;
+  color: #f71722;
 }
 
 main .element > div {
