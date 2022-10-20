@@ -28,6 +28,8 @@
 //   return '';
 // };
 
+const loadingSpinner = document.querySelector('.lds-dual-ring');
+
 const addGameBoxes = async (gameList) => {
   for (i in gameList) {
     let box = document.createElement('div');
@@ -36,7 +38,6 @@ const addGameBoxes = async (gameList) => {
     let h1 = document.createElement('h1');
     h1.innerText = gameList[i].name;
     text.appendChild(h1);
-
     let image = document.createElement('img');
     image.classList.add('cover');
     image.alt = gameList[i].name;
@@ -103,7 +104,12 @@ const addGame = ({ currentTarget }) => {
     body: JSON.stringify(currentTarget.gameId),
   })
     .then((res) => res.json())
-    .then((res) => (currentTarget.src = 'checkSign.svg'));
+    .then((res) => {
+      currentTarget.src = 'checkSign.svg';
+      currentTarget.alt = 'check sign';
+      currentTarget.classList.remove('plusSign');
+      currentTarget.classList.add('checkSign');
+    });
 };
 
 const showBestGames = async (APIkey) => {
@@ -115,11 +121,11 @@ const showBestGames = async (APIkey) => {
       'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com',
     },
   };
-
   let response = await fetch(
     `https://rawg-video-games-database.p.rapidapi.com/games?key=${APIkey}&ordering=-metacritic`,
     options
   );
+  loadingSpinner.style.display = 'none';
   response = await response.json();
   response.results.forEach((element) => {
     gamesFound.push(element);

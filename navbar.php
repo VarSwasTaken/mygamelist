@@ -9,17 +9,22 @@
     </form>    
     <div class="col-md-3 text-end">
     <?php
-        if(isset($_SESSION['username'])) {
+        if($_SESSION['admin'] == 1) {
+          echo '<img src="personIcon.svg" alt="person icon">
+          <span class="username">'.$_SESSION["username"].'</span>
+          <a href="adminPanel.php"><button type="button" class="adminPanel btn btn-outline-primary me-2">Admin panel</button></a>';
+          echo '<a href="logout.php"><button type="button" class="btn btn-primary">Sign out</button></a>';
+        }
+        else if(isset($_SESSION['username'])) {
             echo '<img src="personIcon.svg" alt="person icon">
             <span class="username">'.$_SESSION["username"].'</span>
             <a href="gamesList.php"><button type="button" class="yourGames btn btn-outline-primary me-2">Twoje gry</button></a>';
-            echo '<a href="logout.php"><button type="button" class="btn btn-primary">Wyloguj</button></a>';
+            echo '<a href="logout.php"><button type="button" class="btn btn-primary">Sign out</button></a>';
         }
         else {
             echo '<button type="button" class="loginButton btn btn-outline-primary me-2">Login</button>';
             echo '<button type="button" class="signUpButton btn btn-primary">Sign up</button>';
         }
-        
     ?>
     </div>
   </header>
