@@ -72,6 +72,7 @@ main .element > img.cover {
   flex-basis: 25%;
   min-width: 25%;
   height: 90%;
+  height: 170px;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -106,6 +107,32 @@ main .element p {
   margin: 0;
 }
 
+@media screen and (max-width: 992px) {
+  main .element {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+  main .element > img.cover {
+    min-width: none;
+    max-width: 75%;
+  }
+  header > a {
+    width: 100%;
+    justify-content: center;
+  }
+  input[type=search] {
+    width: 150%;
+    margin-bottom: 1rem;
+    margin-left: calc(-25% + 1rem);
+  }
+}
+@media screen and (max-width: 768px) {
+  main .element > img.cover {
+    max-width: 100%;
+  }
+}
 .popup-login {
   background-color: #212529;
   position: absolute;
