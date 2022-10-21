@@ -1,5 +1,5 @@
 <?php
-    require_once 'utils.php';
+    require_once './utils.php';
 
     function register(&$username) {
         if(!validate(['username', 'password'])) throw new Exception('Empty values');
@@ -23,7 +23,7 @@
     }
 
     function check_duplicates($username) {
-        require 'config.php';
+        require './config.php';
         $sql = 'SELECT * FROM users WHERE username = ?';
 
         $stmt = $link->prepare($sql);
@@ -35,7 +35,7 @@
     }
 
     function add_user($username, $password) {
-        require 'config.php';
+        require './config.php';
         $sql = 'INSERT INTO users(username, password, admin) VALUES(?, ?, 0)';
 
         $password = password_hash($password, PASSWORD_ARGON2ID);

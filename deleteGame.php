@@ -12,7 +12,7 @@
         echo json_encode('Error');
     }
 
-    require_once 'config.php';
+    require_once './config.php';
 
     $sql = "DELETE FROM usergames WHERE userID = ? AND gameID = ?";
 

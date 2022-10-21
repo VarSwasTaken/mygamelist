@@ -1,3 +1,7 @@
+const loadingSpinner = document.querySelector('.lds-dual-ring');
+const header = document.querySelector('main').querySelector('h1');
+let amountOfGames = 0;
+
 const addGameBoxes = async (gameList) => {
   for (i in gameList) {
     let box = document.createElement('div');
@@ -38,7 +42,7 @@ const addGameBoxes = async (gameList) => {
 
     let gameAddAction = document.createElement('img');
 
-    gameAddAction.src = 'dashSign.svg';
+    gameAddAction.src = '../img/dashSign.svg';
     gameAddAction.alt = 'plus icon';
     gameAddAction.classList.add('plusSign');
 
@@ -55,7 +59,7 @@ const addGameBoxes = async (gameList) => {
 };
 
 const deleteGame = ({ currentTarget }) => {
-  fetch('/deleteGame.php', {
+  fetch('../deleteGame.php', {
     method: 'POST',
     headers: {
       Accept: 'application/json, text/plain, */*',
@@ -64,18 +68,24 @@ const deleteGame = ({ currentTarget }) => {
     body: JSON.stringify(currentTarget.gameId),
   })
     .then((res) => res.json())
-    .then((res) => document.getElementById(currentTarget.gameId).remove());
+    .then((res) => {
+      amountOfGames--;
+      header.innerText = `Your games (${amountOfGames}):`; 
+      document.getElementById(currentTarget.gameId).remove()
+    });
 };
 
 window.addEventListener('load', async () => {
-  let AddedGamesList = await fetch('getGames.php');
+  header.innerText = 'Your games:';
+  let AddedGamesList = await fetch('../getGames.php');
   AddedGamesList = await AddedGamesList.json();
-
+  amountOfGames = AddedGamesList.length;
   let gameList = [];
   for (const id of AddedGamesList) {
     gameList.push(await getGame(id));
   }
-
+  header.innerText = `Your games (${amountOfGames}):`;
+  loadingSpinner.style.display = 'none';
   console.log(gameList);
   content.innerHTML = '';
   addGameBoxes(gameList);
