@@ -47,6 +47,7 @@ input[type=search]::-webkit-search-results-decoration {
 .navigation span.username {
   color: #f3f3f3;
   padding: 0 0.5rem 0 0.2rem;
+  overflow: hidden;
 }
 
 main {
@@ -123,9 +124,16 @@ main .element p {
     justify-content: center;
   }
   input[type=search] {
-    width: 150%;
+    width: 75%;
     margin-bottom: 1rem;
-    margin-left: calc(-25% + 1rem);
+  }
+  header > form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  header {
+    flex-direction: column;
   }
 }
 @media screen and (max-width: 768px) {
@@ -149,6 +157,7 @@ main .element p {
   padding: 2.5rem;
   border: 1px solid white;
   border-radius: 10px;
+  max-width: 90%;
 }
 
 .formInput {
