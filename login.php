@@ -9,7 +9,7 @@
         $password = htmlspecialchars(strip_tags(trim($_POST['password'])));
         if(!$username || !$password) throw new Exception('Bad input');
 
-        require 'config.php';
+        require './config.php';
         $sql = 'SELECT id, password, admin FROM users WHERE username = ?';
 
         $stmt = $link->prepare($sql);

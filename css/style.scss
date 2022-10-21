@@ -53,11 +53,6 @@ input[type='search']::-webkit-search-results-decoration {
   overflow: hidden;
 }
 
-// .listSign {
-//     padding-right: 0.2rem;
-//     cursor: pointer;
-// }
-
 main {
   color: $secondary;
 }
@@ -75,14 +70,12 @@ main .element {
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  // padding: 1rem 0;
 }
 
 main .element > img.cover {
   flex-basis: 25%;
   min-width: 25%;
   height: 90%;
-  height: 170px;
   object-fit: cover;
 }
 
@@ -128,6 +121,11 @@ main .element p {
   main .element > img.cover {
     min-width: none;
     max-width: 75%;
+  }
+
+  main .element div {
+    align-self: flex-start;
+    margin: 0 1rem;
   }
 
   header > a {
@@ -261,8 +259,22 @@ main > .admin-panel h2 {
 }
 
 .admin-panel input {
-  margin-top: 0.25rem;
   border-radius: 0.375rem;
 }
 
-@import './node_modules/bootstrap/scss/bootstrap.scss';
+.admin-panel form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-panel form button {
+  width: 100px;
+}
+
+.popup-controller {
+  width: 60px;
+  height: 60px;
+}
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';

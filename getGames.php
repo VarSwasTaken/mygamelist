@@ -2,7 +2,7 @@
     session_start();
     if(!$_SESSION['id']) echo json_encode([]);
     else {
-        require_once 'config.php';
+        require_once './config.php';
         $sql = 'SELECT DISTINCT gameID FROM usergames WHERE userID = ?';
 
         $stmt = $link->prepare($sql);
